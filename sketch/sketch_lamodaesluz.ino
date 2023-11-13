@@ -6,16 +6,25 @@ Servo tiltServo;          // Servo for tilt movement
 const int panPotPin = A0;  // Pin for the pan potentiometer
 const int tiltPotPin = A1; // Pin for the tilt potentiometer
 
-int panPotValue = 0;       // Variable to store the pan potentiometer value
-int tiltPotValue = 0;      // Variable to store the tilt potentiometer value
+// Define constants for servo angles
+const int leftAngle = 0;
+const int centerAngle = 45;
+const int rightAngle = 90;
 
-int leftAngle = 0;        // Angle for the left position
-int centerAngle = 45;     // Angle for the center position
-int rightAngle = 90;      // Angle for the right position
+const int topAngle = 0;
+const int centerTiltAngle = 60;
+const int downAngle = 120;
 
-int topAngle = 0;         // Angle for the top position
-int centerTiltAngle = 60; // Angle for the center tilt position
-int downAngle = 120;      // Angle for the down position
+// Function to map potentiometer value to servo position
+int mapPotToServo(int potValue, int lowerThreshold, int upperThreshold, int minAngle, int maxAngle) {
+  if (potValue < lowerThreshold) {
+    return minAngle;
+  } else if (potValue < upperThreshold) {
+    return centerAngle;
+  } else {
+    return maxAngle;
+  }
+}
 
 void setup() {
   Serial.begin(9600);     // Initialize serial communication for debugging
@@ -28,18 +37,7 @@ void loop() {
   panPotValue = analogRead(panPotPin);
 
   // Map the pan potentiometer value to predefined angles for left, center, and right positions
-  int panServoPos;
-
-  if (panPotValue < 341) {
-    // If analog value is in the lower third
-    panServoPos = leftAngle;
-  } else if (panPotValue < 682) {
-    // If analog value is in the middle third
-    panServoPos = centerAngle;
-  } else {
-    // If analog value is in the upper third
-    panServoPos = rightAngle;
-  }
+  int panServoPos = mapPotToServo(panPotValue, 341, 682, leftAngle, rightAngle);
 
   // Set the pan servo position
   panServo.write(panServoPos);
@@ -48,18 +46,7 @@ void loop() {
   tiltPotValue = analogRead(tiltPotPin);
 
   // Map the tilt potentiometer value to predefined angles for top, center tilt, and down positions
-  int tiltServoPos;
-
-  if (tiltPotValue < 341) {
-    // If analog value is in the lower third
-    tiltServoPos = topAngle;
-  } else if (tiltPotValue < 682) {
-    // If analog value is in the middle third
-    tiltServoPos = centerTiltAngle;
-  } else {
-    // If analog value is in the upper third
-    tiltServoPos = downAngle;
-  }
+  int tiltServoPos = mapPotToServo(tiltPotValue, 341, 682, topAngle, downAngle);
 
   // Set the tilt servo position
   tiltServo.write(tiltServoPos);
