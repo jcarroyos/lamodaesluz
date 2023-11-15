@@ -27,3 +27,5 @@ This Arduino project controls a pan-and-tilt system using two servos, allowing s
 4. Upload the code to your Arduino board.
 5. Observe the synchronized pan-and-tilt movements based on potentiometer input.
 
+## Functional prototype:
+![Analog movements](./functional_prototype.jpg)
