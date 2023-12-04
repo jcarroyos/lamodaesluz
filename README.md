@@ -1,3 +1,8 @@
+
+
+# [La Moda es Luz](https://bogavisual.com/proyectos/MuseoTrajes/sitio/)
+![La-moda-es-luz](https://github.com/jcarroyos/lamodaesluz/assets/4398275/ffe86733-1064-40f6-bfc7-248de9a10847)
+
 # Pan-and-Tilt Servo Control System
 
 This Arduino project controls a pan-and-tilt system using two servos, allowing synchronized movement based on potentiometer input. The system consists of a total of 6 modules, each equipped with 2 servos for a total of 12 servos. The pan (horizontal) and tilt (vertical) movements are controlled by potentiometers, providing an intuitive and user-friendly interface.
@@ -27,8 +32,4 @@ This Arduino project controls a pan-and-tilt system using two servos, allowing s
 4. Upload the code to your Arduino board.
 5. Observe the synchronized pan-and-tilt movements based on potentiometer input.
 
-Feel free to customize the code and hardware setup to meet your specific requirements!
 
----
-
-Adjust the description as needed based on the actual setup and features of your project.
